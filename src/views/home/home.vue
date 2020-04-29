@@ -5,7 +5,6 @@
     <!--tabbar -->
     <tabbar></tabbar>
     <!-- 轮播图组件 -->
-
     <div class="content box">
       <div class="top">
         <swiper class="swiper"></swiper>
@@ -20,17 +19,34 @@
           <p>现居:河北省</p>
           <p>Email:1467658005@qq.com</p>
           <img class="qq" v-show="qqs" src="~@/assets/img/qqs.png" alt />
-          <img class="weixin" v-show="weis" src="~@/assets/img/weixins.png" alt />
+          <img
+            class="weixin"
+            v-show="weis"
+            src="~@/assets/img/weixins.png"
+            alt
+          />
           <div class="icon">
             <img src="~@/assets/img/home.png" title="首页" alt="1111" />
             <img src="~@/assets/img/电子邮件.png" title="邮件" alt="2" />
-            <img src="~@/assets/img/qq.png" @mouseover="qq" @mouseleave="qqss" title="QQ" alt />
-            <img src="~@/assets/img/微信.png" @mouseover="wei" @mouseleave="weiss" title="微信" alt />
+            <img
+              src="~@/assets/img/qq.png"
+              @mouseover="qq"
+              @mouseleave="qqss"
+              title="QQ"
+              alt
+            />
+            <img
+              src="~@/assets/img/微信.png"
+              @mouseover="wei"
+              @mouseleave="weiss"
+              title="微信"
+              alt
+            />
           </div>
         </div>
       </div>
     </div>
-
+    <!-- 项目接口的展示 -->
     <contents></contents>
   </div>
 </template>
@@ -46,14 +62,14 @@ export default {
     return {
       qqs: false,
       weis: false,
-      arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
+      arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0],
     };
   },
   components: {
     animation,
     tabbar,
     swiper,
-    contents
+    contents,
   },
   methods: {
     qq() {
@@ -67,8 +83,8 @@ export default {
     },
     weiss() {
       this.weis = false;
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -77,8 +93,10 @@ export default {
 @homebackground: rgb(238, 236, 235);
 .content {
   margin: 0 auto;
+  /* overflow-x: hidden; */
 }
 .home {
+  overflow-x: hidden;
   /* 背景的颜色 */
   background: @homebackground;
   width: 100%;
@@ -87,6 +105,7 @@ export default {
 
 .top {
   /* 最上面的那个3个div */
+  width: 100%;
   margin: 30px auto;
   display: flex;
   justify-content: space-around;

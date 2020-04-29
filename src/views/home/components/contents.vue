@@ -1,10 +1,12 @@
 <template>
   <div class="content boxs">
-    <div class="box-item" v-for="(value,index) in arr" :key="index">
-      <div>
-        {{value}}
-        <h1>123</h1>
-      </div>
+    <div
+      @click="click(index)"
+      class="box-item"
+      v-for="(value, index) in arr"
+      :key="index"
+    >
+      <p class="p">{{ value }}</p>
     </div>
   </div>
 </template>
@@ -13,13 +15,23 @@
 export default {
   data() {
     return {
-      arr: [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12]
+      arr: ["移动端商城", "移动端记账app"],
     };
-  }
+  },
+  methods: {
+    click(e) {
+      if (e == 0) {
+        console.log("1111111111111");
+        this.$router.push("/supermall");
+      } else {
+        return 1;
+      }
+    },
+  },
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .boxs {
   position: relative;
   display: flex;
@@ -29,7 +41,16 @@ export default {
     margin: 20px 0;
     width: 33%;
     height: 200px;
+    margin: 5px auto;
+    background-color: rgb(177, 177, 175);
+    cursor: pointer;
     /* border: 1px solid red; */
+    .p {
+      text-align: center;
+    }
+  }
+  .box-item:hover {
+    box-shadow: 0px 0px 20px rgb(238, 176, 176);
   }
 }
 
@@ -65,7 +86,7 @@ export default {
       margin: 20px 0;
       width: 100%;
       height: 200px;
-      border: 1px solid red;
+      /* border: 1px solid red; */
     }
   }
 }
