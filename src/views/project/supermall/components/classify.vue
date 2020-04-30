@@ -41,7 +41,7 @@ export default {
   cursor: pointer;
   width: 100%;
   height: 40px;
-  border: 1px solid red;
+  /* border: 1px solid red; */
   display: flex;
   div {
     flex: 1;

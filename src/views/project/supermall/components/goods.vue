@@ -1,12 +1,17 @@
 <template>
   <strong class="goods">
-    <strong class="img-info" @click="click(value.id)" v-for="(value,index) in goods" :key="index">
+    <strong
+      class="img-info"
+      @click="click(value.id)"
+      v-for="(value, index) in goods"
+      :key="index"
+    >
       <img :src="value.img" alt @load="img" />
       <p>
         <strong class="red">￥</strong>
-        <strong class="font">{{value.price}}</strong>
+        <strong class="font">{{ value.price }}</strong>
       </p>
-      <p>{{value.description}}</p>
+      <p>{{ value.description }}</p>
     </strong>
   </strong>
 </template>
@@ -20,8 +25,8 @@ export default {
   props: {
     goods: {
       type: Array,
-      default: []
-    }
+      default: [],
+    },
   },
   methods: {
     img() {
@@ -29,12 +34,12 @@ export default {
     },
     click(a) {
       this.$router.push("/detail/" + a);
-    }
-  }
+    },
+  },
 };
 </script>
 
-<style scoped lang='less'>
+<style scoped lang="less">
 .goods {
   position: relative;
   display: flex;

@@ -10,11 +10,11 @@ export default {
     return {};
   },
   components: {},
-  methods:{
-      click(){
-          this.$emit('backtop')
-      }
-  }
+  methods: {
+    click() {
+      this.$emit("backtop");
+    },
+  },
 };
 </script>
 
