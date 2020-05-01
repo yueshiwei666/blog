@@ -15,7 +15,8 @@
         {{ fact.description }}
       </p>
     </div>
-
+    1111111111111111
+    <div v-for="(value, index) in factq" :key="index">{{ value }}</div>
     <div v-show="show" ref="ref" class="div">{{ success }}</div>
     <shopbar @addshop="addshop"></shopbar>
   </div>
@@ -73,7 +74,10 @@ export default {
         });
       });
     },
-    addshop() {},
+    addshop() {
+      /*点击加入购物车 */
+      this.$store.dispatch("addshop", this.fact);
+    },
     back() {
       this.$router.back();
     },
@@ -81,6 +85,9 @@ export default {
   computed: {
     success() {
       return this.show ? "收藏成功" : "取消";
+    },
+    factq() {
+      return this.$store.getters.fact;
     },
   },
 };

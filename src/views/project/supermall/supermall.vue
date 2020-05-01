@@ -161,7 +161,7 @@ export default {
   },
   computed: {
     goodss() {
-      console.log(this.goods[this.type].info);
+      /* console.log(this.goods[this.type].info); */
       return this.goods[this.type].info;
     },
   },
