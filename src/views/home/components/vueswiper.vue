@@ -35,7 +35,7 @@ export default {
 
       // 如果需要分页器
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination"
       },
       type: "fraction",
       hashNavigation: true,
@@ -43,16 +43,21 @@ export default {
       replaceState: true,
       mousewheel: true,
       autoplay: {
-        delay: 1500, //1秒切换一次
+        delay: 1500 //1秒切换一次
       },
 
       // 如果需要前进后退按钮
       navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        prevEl: ".swiper-button-prev"
       },
+      autoplay: {
+        delay: 1000,
+        stopOnLastSlide: false,
+        disableOnInteraction: true
+      }
     });
-  },
+  }
 };
 </script>
 

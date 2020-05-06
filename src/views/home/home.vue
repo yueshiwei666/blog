@@ -229,6 +229,7 @@ export default {
   }
   .top .swiper {
     width: 100%;
+    height: 220px;
   }
   .top .right {
     border-radius: 20px;

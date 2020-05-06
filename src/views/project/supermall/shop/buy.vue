@@ -4,17 +4,17 @@
       <span>
         <!-- <img :class="{'activee':all}" src="~assets/shop.svg" alt /> -->
       </span>
-      全选
-      <img
+      <!-- 全选 -->
+      <!-- <img
         :class="{ back: allcheck }"
         class="i"
         src="~@/assets/img/shop.svg"
         alt
         @click="click"
-      />
+      />-->
     </div>
-    <div>合计：{{ heji }}</div>
-    <div>去计算</div>
+    <div>合计：{{ heji }}元</div>
+    <div>去计算{{factlength }}件</div>
   </div>
 </template>
 
@@ -22,7 +22,7 @@
 export default {
   data() {
     return {
-      color: "",
+      color: ""
     };
   },
   computed: {
@@ -32,12 +32,15 @@ export default {
     heji() {
       return this.$store.getters.heji;
     },
+    factlength() {
+      return this.$store.state.fact.length;
+    }
   },
   methods: {
     click() {
       return this.$store.commit("all");
-    },
-  },
+    }
+  }
 };
 </script>
 

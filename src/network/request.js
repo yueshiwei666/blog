@@ -11,7 +11,7 @@ export function request(url, params) {
  */
 
 import axios from "axios";
-var baseURL = "http://127.0.0.1:3000";
+var baseURL = "http://47.97.208.201:3000";
 axios.interceptors.response.use((res) => {
   return res.data;
 });

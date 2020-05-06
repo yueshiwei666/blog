@@ -1,41 +1,21 @@
 <template>
   <div>
     <tabbar class="tabbar">
-      <div slot="left" @click="$router.push('/home')">首页</div>
-      <div slot="center">记账</div>
+      <div slot="left" @click="backs">返回</div>
     </tabbar>
-    <div class="transform">
-      <div class="div">
-        <div
-          class="huafei"
-          @click="topcolor1"
-          :class="{ topcolor: color == 1 }"
-        >
-          花费
-        </div>
-        <div
-          class="shouru"
-          @click="topcolor2"
-          :class="{ topcolor: color == 2 }"
-        >
-          收入
-        </div>
-      </div>
-    </div>
-
     <div class="price">
       <div class="price-div">
-        <img src="~@/assets/img/qian.png" alt="" />
+        <img src="~@/assets/img/qian.png" alt />
         <strong>金额</strong>
 
-        <input type="text" placeholder="0.0" v-model="value" />
+        <input v-model="value" type="text" placeholder="0.0" />
       </div>
       <div class="price-div">
-        <img src="~@/assets/img/leibie.png" alt="" />
+        <img src="~@/assets/img/leibie.png" alt />
         <strong>
-          <strong v-show="shouru">收入</strong>
-          类别:{{ lei }}</strong
-        >
+          <!--  <strong v-show="shouru">收入</strong> -->
+          类别:{{ lei }}
+        </strong>
         <div class="guanli" @click="leibie">
           类别管理
           <transition name="fade">
@@ -48,32 +28,25 @@
         </div>
       </div>
       <div class="price-div">
-        <img src="~@/assets/img/riqi.png" alt="" /> <strong>日期</strong>
-        <strong>{{ date }}</strong>
+        <img src="~@/assets/img/riqi.png" alt />
+        <strong>日期:{{ date }}</strong>
+        <strong></strong>
       </div>
       <div class="price-div">
-        <img src="~@/assets/img/shuoming.png" alt="" />
-        <strong>说明: </strong>
-        <textarea v-model="shuo" name="" id="" cols="15" rows="3"></textarea>
+        <img src="~@/assets/img/shuoming.png" alt />
+        <strong>说明:</strong>
+        <textarea v-model="shuo" name id cols="15" rows="3"></textarea>
       </div>
     </div>
     <div class="confirm" @click="queding">确定</div>
-    <tab
-      class="tab"
-      :active="0"
-      :arr="['记账', '流水报告']"
-      @tabbarclick="tabbarclick"
-    >
-    </tab>
   </div>
 </template>
 
 <script>
-import tab from "components/tab";
-import tabbar from "components/tabbar.vue";
-import scroll from "components/BetterScroll";
+import tabbar from "components/tabbar";
+import { log } from "util";
 export default {
-  name: "bill",
+  name: "edit",
   data() {
     return {
       color: 1,
@@ -85,40 +58,16 @@ export default {
     };
   },
   components: {
-    scroll,
     tabbar,
-    tab,
   },
   methods: {
-    monitor() {
-      console.log("scroll滑动了");
-    },
-    pullUpLoads() {
-      console.log("滑到了底部");
-    },
-    tabbarclick(aaa) {
-      if (aaa == 0) {
-        this.$router.push("/bill");
-      } else if (aaa == 1) {
-        this.$router.push("/liushui");
-      } else {
-        return 1;
-      }
-    },
-    topcolor1() {
-      this.color = 1;
-      this.shouru = false;
-    },
-    topcolor2() {
-      this.color = 2;
-      this.shouru = true;
+    backs() {
+      this.$router.push("/liushui");
     },
     leibie() {
       /* console.log("1111111111111111"); */
-
       this.show = !this.show;
     },
-
     clicks(a) {
       if (a == 1) {
         this.leis = "购物";
@@ -130,22 +79,23 @@ export default {
       /*  console.log(a); */
     },
     queding() {
-      var payload = {
+      var obj = {
         jine: this.value,
-        leibies: this.leis,
-        riqis: this.date,
-        shuomings: this.shuo,
+        leibie: this.leis,
+        shuoming: this.shuo,
+        id: this.$route.params.id,
       };
-      if (this.value != "" && this.shuo != "") {
-        this.$store.dispatch("action", payload);
-      }
-      this.value = "";
-      this.shuo = "";
-
-      /*  console.log(payload); */
+      this.$store.commit("changes", obj);
+      this.$router.push("/liushui");
     },
   },
+  created() {
+    this.backdata;
+  },
   computed: {
+    lei() {
+      return this.leis;
+    },
     date() {
       var myDate = new Date();
 
@@ -154,14 +104,23 @@ export default {
       str = myDate.getFullYear() + "-" + num + "-" + myDate.getDate();
       return str;
     },
-    lei() {
-      return this.leis;
+    backdata() {
+      console.log(this.$route.params.id);
+      var obj = this.$store.getters.backdata(this.$route.params.id);
+      console.log(obj);
+      this.value = obj.jine;
+      this.shuo = obj.shuomings;
+      this.leis = obj.leibies;
     },
   },
 };
 </script>
 
 <style scoped lang="less">
+.tabbar {
+  background: rgb(240, 129, 129);
+}
+
 @tabbar-color: rgb(240, 129, 129);
 @back: rgb(160, 160, 236);
 @topcolor: rgb(125, 191, 201);
@@ -294,8 +253,5 @@ export default {
   border-radius: 10px;
   left: 50%;
   transform: translate(-50%, 0);
-}
-.tab {
-  background: white;
 }
 </style>

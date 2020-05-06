@@ -6,6 +6,9 @@ import supermall from "views/project/supermall/supermall";
 import supermall_shop from "views/project/supermall/shop/shop";
 import supermall_my from "views/project/supermall/my/my";
 import detail from "views/project/supermall/detail/detail";
+import bill from "views/project/bill/bill";
+import liushui from "views/project/bill/liushui/liushui";
+import edit from "views/project/bill/liushui/edit";
 Vue.use(VueRouter);
 
 const routes = [
@@ -40,8 +43,23 @@ const routes = [
   },
   {
     path: "/detail/:id",
-    /* name: "detail", */
+    name: "detail",
     component: detail,
+  },
+  {
+    path: "/bill",
+    name: "bill",
+    component: bill,
+  },
+  {
+    path: "/liushui",
+    name: "liushui",
+    component: liushui,
+  },
+  {
+    path: "/edit/:id",
+    name: "edit",
+    component: edit,
   },
 ];
 

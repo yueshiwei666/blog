@@ -6,12 +6,7 @@
       <div slot="center">商城</div>
     </tabbar>
     <!-- 副本商品的分类的展示 -->
-    <classify
-      :shuzi="num"
-      @number="number"
-      v-show="show"
-      :class="{ classifys: show }"
-    ></classify>
+    <classify :shuzi="num" @number="number" v-show="show" :class="{ classifys: show }"></classify>
     <!-- 返回顶部的按钮 -->
     <backtop @backtop="backtop"></backtop>
     <scroll
@@ -25,13 +20,13 @@
       <div class="swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <img src="http://127.0.0.1:3000/public/01.jpg" alt />
+            <img src="~@/assets/img/111.jpg" alt />
           </div>
           <div class="swiper-slide">
-            <img src="http://127.0.0.1:3000/public/02.jpg" alt />
+            <img src="~@/assets/img/222.jpg" alt />
           </div>
           <div class="swiper-slide">
-            <img src="http://127.0.0.1:3000/public/03.jpg" alt />
+            <img src="~@/assets/img/333.jpg" alt />
           </div>
         </div>
         <!-- 如果需要分页器 -->
@@ -70,12 +65,12 @@ export default {
       goods: {
         goods1: { page: 1, info: [] },
         goods2: { page: 1, info: [] },
-        goods3: { page: 1, info: [] },
+        goods3: { page: 1, info: [] }
       },
       type: "goods1",
       show: false,
       num: 1,
-      showw: true,
+      showw: true
     };
   },
   components: {
@@ -84,7 +79,7 @@ export default {
     scroll,
     goodsInfo,
     tab,
-    backtop,
+    backtop
   },
   methods: {
     number(a) {
@@ -105,7 +100,7 @@ export default {
     getgoods(type) {
       if (type == "/goods1") {
         let page = this.goods.goods1.page;
-        goods(type, page).then((result) => {
+        goods(type, page).then(result => {
           this.goods.goods1.page += 1;
           /*  console.log(result); */
           this.goods.goods1.info.push(...result.data);
@@ -115,7 +110,7 @@ export default {
       }
       if (type == "/goods2") {
         let page = this.goods.goods1.page;
-        goods(type, page).then((result) => {
+        goods(type, page).then(result => {
           this.goods.goods2.page += 1;
           /*  console.log(result); */
           this.goods.goods2.info.push(...result.data);
@@ -124,7 +119,7 @@ export default {
       }
       if (type == "/goods3") {
         let page = this.goods.goods1.page;
-        goods(type, page).then((result) => {
+        goods(type, page).then(result => {
           this.goods.goods3.page += 1;
           /*  console.log(result); */
           this.goods.goods3.info.push(...result.data);
@@ -141,7 +136,7 @@ export default {
         return;
       }
       let page = this.goods[this.type].page;
-      goods("/" + this.type, page).then((result) => {
+      goods("/" + this.type, page).then(result => {
         this.goods[this.type].page += 1;
         this.goods[this.type].info.push(...result.data);
       });
@@ -157,13 +152,13 @@ export default {
     },
     backtop() {
       this.$refs.scroll.basetop(0, 0);
-    },
+    }
   },
   computed: {
     goodss() {
       /* console.log(this.goods[this.type].info); */
       return this.goods[this.type].info;
-    },
+    }
   },
   created() {
     //goods数据获取
@@ -178,26 +173,26 @@ export default {
 
       // 如果需要分页器
       pagination: {
-        el: ".swiper-pagination",
+        el: ".swiper-pagination"
       },
       autoplay: {
         delay: 1500,
         stopOnLastSlide: false,
-        disableOnInteraction: true,
+        disableOnInteraction: true
       },
 
       // 如果需要前进后退按钮
       navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
+        prevEl: ".swiper-button-prev"
       },
 
       // 如果需要滚动条
       scrollbar: {
-        el: ".swiper-scrollbar",
-      },
+        el: ".swiper-scrollbar"
+      }
     });
-  },
+  }
 };
 </script>
 

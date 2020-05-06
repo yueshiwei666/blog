@@ -1,11 +1,6 @@
 <template>
   <div class="content boxs">
-    <div
-      @click="click(index)"
-      class="box-item"
-      v-for="(value, index) in arr"
-      :key="index"
-    >
+    <div @click="click(index)" class="box-item" v-for="(value, index) in arr" :key="index">
       <p class="p">{{ value }}</p>
     </div>
   </div>
@@ -15,7 +10,7 @@
 export default {
   data() {
     return {
-      arr: ["移动端商城", "移动端记账app"],
+      arr: ["移动端商城", "移动端记账app"]
     };
   },
   methods: {
@@ -23,11 +18,13 @@ export default {
       if (e == 0) {
         console.log("1111111111111");
         this.$router.push("/supermall");
+      } else if (e == 1) {
+        this.$router.push("/bill");
       } else {
         return 1;
       }
-    },
-  },
+    }
+  }
 };
 </script>
 

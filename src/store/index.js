@@ -6,6 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     fact: [],
+    billdata: [],
   },
   mutations: {
     add(state, a) {
@@ -51,13 +52,42 @@ export default new Vuex.Store({
         a.bool = boo;
       });
     },
+    addbill(state, a) {
+    /*   console.log(a); */
+      var id = state.billdata.length;
+      a.id = id;
+      state.billdata.push(a);
+     /*  console.log("11111111"); */
+    },
+    shanchu(state, id) {
+      var obj = state.billdata.find((a) => {
+        return a.id == id;
+      });
+      if (obj) {
+        var num = null;
+        for (var i = 0; i < state.billdata.length; i++) {
+          if (state.billdata[i].id == obj.id) {
+            state.billdata.splice(i, 1);
+          }
+        }
+        console.log();
+      }
+    },
+    changes(state, obj) {
+      var qq = state.billdata.find((a) => {
+        return a.id == obj.id;
+      });
+      qq.leibies = obj.leibie;
+      qq.jine = obj.jine;
+      qq.shuomings = obj.shuoming;
+      console.log(qq);
+    },
   },
   actions: {
     addshop(context, parames) {
       /* 点击购物车后来到这里添加商品 */
       /* console.log("----------------"); */
       var temp = null;
-
       /* temp = context.state.fact.find((aa) => {
         return aa.id === parames.id;
       }); */
@@ -83,6 +113,10 @@ export default new Vuex.Store({
         /* context.state.fact.push(parames); */
         context.commit("add", parames);
       }
+    },
+    action(context, a) {
+      this.commit("addbill", a);
+      /* console.log(this.state.billdata); */
     },
   },
   modules: {},
@@ -120,5 +154,18 @@ export default new Vuex.Store({
       }
       return num;
     },
+    backbill(state) {
+      return state.billdata;
+    },
+    backdata(state) {
+      /* this.commit("addbills", a); */
+      return function(id) {
+        var qq = state.billdata.find((a) => {
+          return a.id == id;
+        });
+        return qq;
+      };
+    },
+
   },
 });

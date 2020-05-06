@@ -9,7 +9,7 @@
 export default {
   data() {
     return {
-      data: ["detail", "supermall_shop"],
+      data: ["detail", "supermall_shop", "edit", "liushui"],
     };
   },
 };

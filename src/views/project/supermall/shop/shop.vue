@@ -24,6 +24,9 @@
         <div class="div3">
           描述:
           <strong>{{ value.description }}</strong>
+          <p>
+            <strong style="color:red;">{{ value.price }}元</strong>
+          </p>
         </div>
         <div class="div4">×{{ value.number }}</div>
       </div>
@@ -54,11 +57,10 @@ export default {
     buy,
   },
   methods: {
-    click(e) {
-      /* e.bool = !e.bool; */
-      console.log(e.bool);
-
-      this.$store.commit("change", e);
+    click(a) {
+      /* a.bool = !a.bool; */
+      console.log(a.bool);
+      this.$store.commit("change", a);
     },
   },
   destroyed() {
@@ -94,9 +96,10 @@ export default {
     cursor: pointer;
     margin: 10px auto;
     width: 100%;
-    height: 100px;
+    height: 120px;
     /* border: 1px solid red; */
     display: flex;
+
     .div1 {
       flex: 1;
       text-align: center;
@@ -111,7 +114,7 @@ export default {
       flex: 2;
       img {
         width: 100px;
-        height: 100px;
+        height: 120px;
       }
     }
     .div3 {
